@@ -1,0 +1,92 @@
+Postman testing
+
+/without-validation/user
+request-body
+{
+ "username":"user",
+ "password":"pwd",
+ "email":"example@email.com",
+ "age":"31"
+}
+
+response-body
+{
+    "username": "user",
+    "password": "pwd",
+    "email": "example@email.com",
+    "age": "31"
+}
+
+
+/with-basic-validation/user
+case 1: both username & password is null
+request-body
+{
+ "username":null,
+ "password":null,
+ "email":"example@email.com",
+ "age":"31"
+}
+
+response-body
+{
+    "timestamp": "2024-05-30T12:56:31.384+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "path": "/with-basic-validation/user"
+}
+
+case 2: username is null
+//request-body
+{
+ "username":null,
+ "password":"null",
+ "email":"example@email.com",
+ "age":"31"
+}
+
+response-body
+{
+    "timestamp": "2024-05-30T13:00:55.650+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "path": "/with-basic-validation/user"
+}
+case 3: password is null
+
+
+/with-additional-validation/user
+//request-body
+case 1: both age & email is null
+{
+ "username":"usern",
+ "password":"pwd",
+ "email":null,
+ "age":null
+}
+
+response-body
+{
+    "timestamp": "2024-05-30T12:59:33.510+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "path": "/with-additional-validation/user"
+}
+
+case 2: age is null
+//request-body
+{
+ "username":"usern",
+ "password":"pwd",
+ "email":"email@gmail.com",
+ "age":null
+}
+
+response-bdoy
+{
+    "timestamp": "2024-05-30T13:02:02.025+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "path": "/with-additional-validation/user"
+}
+case 3: email is null
